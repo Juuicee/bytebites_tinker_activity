@@ -74,3 +74,44 @@ class Order:
 # Copilot reviewed one class at a time and suggested methods for adding items to the menu, filtering items by category, adding items to an order, and calculating the total cost of an order. The generated code aligns well with the intended functionality of each class.
 
 # Tested and everything runs properly and as intended.
+
+
+if __name__ == "__main__":
+    # --- Create some FoodItem objects ---
+    burger = FoodItem("Spicy Burger", 10.0, "Main", 5)
+    soda = FoodItem("Large Soda", 3.0, "Drink", 7)
+    ice_cream = FoodItem("Vanilla Ice Cream", 4.5, "Dessert", 8)
+    fries = FoodItem("French Fries", 2.5, "Snack", 6)
+
+    # --- Create a Menu and add items ---
+    menu = Menu()
+    menu.add_item(burger)
+    menu.add_item(soda)
+    menu.add_item(ice_cream)
+    menu.add_item(fries)
+
+    # --- Test filtering by category ---
+    drinks = menu.filter_by_category("Drink")
+    print("Filtered Drinks:", [item.name for item in drinks])  # Expect: ["Large Soda"]
+
+    desserts = menu.filter_by_category("Dessert")
+    print("Filtered Desserts:", [item.name for item in desserts])  # Expect: ["Vanilla Ice Cream"]
+
+    # --- Create a Customer ---
+    alice = Customer("Alice")
+
+    # --- Create an Order for Alice and add items ---
+    order1 = Order(alice)
+    order1.add_item(burger)
+    order1.add_item(fries)
+    order1.add_item(soda)
+
+    # --- Add order to customer's purchase history ---
+    alice.add_order(order1)
+
+    # --- Calculate total for Alice's order ---
+    print(f"Order total for {alice.name}: ${order1.calculate_total():.2f}")  # Expect: 10 + 2.5 + 3 = 15.5
+
+    # --- Print customer purchase history summary ---
+    for i, order in enumerate(alice.purchase_history, start=1):
+        print(f"Order {i} items:", [item.name for item in order.items])
