@@ -25,6 +25,7 @@ class Customer:
         """
         Add an Order to this customer's purchase history.
         """
+        self.purchase_history.append(order) # Added by copilot and it works as intended.
 
 class FoodItem:
     # Initialize a food item with its name, price, category, and popularity rating.
@@ -43,10 +44,13 @@ class Menu:
         """
         Add a FoodItem to the menu.
         """
+        self.items.append(item) # Added by copilot and it works as intended.
+
     def filter_by_category(self, category: str):
         """
         Return a list of FoodItems in this menu that match the given category.
         """
+        return [item for item in self.items if item.category == category] # Added by copilot and it works as intended.
 
 class Order:
     # Initialize an order with a customer and an empty list of selected items. Copilot generated the rest of the code based on the provided context.
@@ -57,11 +61,13 @@ class Order:
         """
         Add a FoodItem to this order.
         """
+        self.items.append(item) # Added by copilot and it works as intended.
 
     def calculate_total(self) -> float:
         """
         Calculate and return the total price of all items in this order.
         """
+        return sum(item.price for item in self.items) # Added by copilot and it works as intended.
 
 
 # Copilot matched my design choices!
